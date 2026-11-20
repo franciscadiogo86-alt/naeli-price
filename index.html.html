@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#e94d91">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NAELI PRICE">
+<title>NAELI PRICE — Precificação Inteligente</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%23e94d91'/%3E%3Ctext x='50%25' y='54%25' font-family='Arial, sans-serif' font-weight='bold' font-size='220' fill='white' text-anchor='middle' dominant-baseline='middle'%3ENP%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%23e94d91'/%3E%3Ctext x='50%25' y='54%25' font-family='Arial, sans-serif' font-weight='bold' font-size='220' fill='white' text-anchor='middle' dominant-baseline='middle'%3ENP%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --pink:#e94d91;
+  --pink-hover:#d63b7e;
+  --light:#fff0f6;
+  --dark:#8f2458;
+  --white:#ffffff;
+  --bg:#fff8fb;
+  --text:#382532;
+  --border:#f2cddd;
+  --muted:#8d7181;
+  --danger:#b83250;
+  --success:#1f8a5b;
+  --warn:#c97a16;
+  --whatsapp:#25d366;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);font-family:'Segoe UI',Arial,sans-serif;color:var(--text)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;border-radius:9px;padding:9px 14px;background:var(--pink);color:white;font-weight:600;transition:0.15s}
+button:hover{background:var(--pink-hover)}
+button.secondary{background:#f8dce9;color:var(--dark)}
+button.secondary:hover{background:#f2c6db}
+button.danger{background:var(--danger)}
+button.whatsapp{background:var(--whatsapp);color:white}
+button.small{padding:5px 9px;font-size:12px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;background:white;color:var(--text);margin:4px 0 11px}
+label{font-size:13px;font-weight:600;color:var(--dark);display:block}
+h1,h2,h3,h4{color:var(--dark);margin-top:0}
+h1{font-size:22px;margin:0}
+h2{font-size:20px;border-bottom:2px solid var(--light);padding-bottom:8px;margin-bottom:16px}
+header{background:white;border-bottom:2px solid var(--border);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+header small{color:var(--muted)}
+.layout{display:flex;min-height:calc(100vh - 68px)}
+nav{width:240px;background:var(--light);padding:12px;flex-shrink:0;border-right:1px solid var(--border);overflow-y:auto}
+nav button{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;margin:3px 0;background:transparent;color:var(--dark);padding:9px 12px;font-size:14px}
+nav button.active,nav button:hover{background:var(--pink);color:white}
+main{padding:22px;flex:1;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:13px;margin-bottom:16px}
+.card,.panel{background:white;border:1px solid var(--border);border-radius:13px;padding:16px;margin-bottom:15px;box-shadow:0 2px 10px rgba(143,36,88,0.03)}
+.metric{font-size:22px;font-weight:bold;color:var(--pink);margin-top:6px}
+.metric.green{color:var(--success)}
+.metric.warn{color:var(--warn)}
+.metric.danger{color:var(--danger)}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+table{width:100%;border-collapse:collapse;background:white;font-size:13.5px}
+th,td{padding:10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:middle}
+th{background:var(--light);color:var(--dark);font-weight:700}
+.tablewrap{overflow:auto;border:1px solid var(--border);border-radius:10px}
+.hidden{display:none!important}
+.muted{color:var(--muted);font-size:12.5px}
+.login{max-width:540px;margin:5vh auto;background:white;border:1px solid var(--border);padding:28px;border-radius:16px;box-shadow:0 10px 35px rgba(143,36,88,0.12)}
+.login h1{text-align:center;font-size:26px}
+.brand{text-align:center;color:var(--pink);font-weight:bold;font-size:12px;letter-spacing:2px;margin-bottom:6px}
+.actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.notice{padding:12px;background:var(--light);border-left:4px solid var(--pink);border-radius:8px;margin:12px 0;font-size:13.5px}
+.badge{padding:3px 8px;border-radius:12px;font-size:11.5px;font-weight:bold;display:inline-block}
+.b-pend{background:#fef3c7;color:#b45309}
+.b-conf{background:#e0f2fe;color:#0369a1}
+.b-prep{background:#f3e8ff;color:#7e22ce}
+.b-pron{background:#dcfce7;color:#15803d}
+.b-entr{background:#f1f5f9;color:#475569}
+.b-canc{background:#fee2e2;color:#b91c1c}
+.status-bar{font-size:12px;padding:4px 10px;border-radius:20px;background:var(--light);color:var(--dark);font-weight:600}
+.sync-indicator{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:4px 10px;border-radius:20px;background:#dcfce7;color:#15803d;font-weight:600}
+.sync-indicator.offline{background:#fee2e2;color:#b91c1c}
+@media print{
+  header,nav,.no-print{display:none!important}
+  main{padding:0}
+  .card,.panel{border:0;box-shadow:none}
+}
+@media(max-width:768px){
+  .layout{display:block}
+  nav{width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:4px;border-right:0;border-bottom:1px solid var(--border)}
+  nav button{font-size:12.5px;padding:8px}
+  main{padding:13px}
+}
+</style>
+<!-- Firebase SDKs (Compat for standalone HTML) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+</head>
+<body>
+
+<!-- ECRÃ DE CARREGAMENTO NUVEM -->
+<div id="loadingScreen" class="login" style="text-align:center">
+  <div class="brand">PRECIFICAÇÃO INTELIGENTE</div>
+  <h1>NAELI PRICE</h1>
+  <p class="muted" style="margin-top:14px">☁️ A ligar à base de dados na nuvem...</p>
+</div>
+
+<!-- SETUP / REGISTO DE NOVA EMPRESA -->
+<div id="setup" class="login hidden">
+  <div class="brand">PRECIFICAÇÃO INTELIGENTE</div>
+  <h1>NAELI PRICE</h1>
+  <p style="text-align:center" class="muted">Configura a tua empresa e inicia o período de acesso.</p>
+  <label>Nome da Empresa / Pastelaria</label><input id="compName" placeholder="Ex.: Tentação Gourmet Lda">
+  <label>Nome do(a) Proprietário(a)</label><input id="ownerName" placeholder="Ex.: Francisca">
+  <label>Email de acesso</label><input id="ownerEmail" type="email" placeholder="proprietario@empresa.ao">
+  <label>Palavra-passe (mín. 6 caracteres)</label><input id="ownerPass" type="password" minlength="6">
+  <label>Confirmar palavra-passe</label><input id="ownerConfirm" type="password">
+
+  <label style="color:var(--pink)">🎟️ Código de Voucher / Recarga (Opcional)</label>
+  <input id="setupInviteCode" placeholder="Insere aqui o teu código se tiveres um...">
+
+  <button style="width:100%;margin-top:8px" onclick="setupCompany()">Criar Conta & Entrar</button>
+  <div style="text-align:center;margin-top:12px">
+    <button class="secondary small" onclick="document.getElementById('setup').classList.add('hidden');document.getElementById('login').classList.remove('hidden');">← Voltar ao Login</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="login hidden">
+  <div class="brand">PRECIFICAÇÃO INTELIGENTE</div>
+  <h1>NAELI PRICE</h1>
+  <p style="text-align:center" class="muted">Inicia sessão no teu espaço privado.</p>
+  <div style="text-align:center;margin-bottom:12px">
+    <span id="loginCloudStatus" class="sync-indicator">☁️ Nuvem Sincronizada</span>
+  </div>
+  <label>Email ou Utilizador</label><input id="loginUser" placeholder="email@empresa.ao">
+  <label>Palavra-passe</label><input id="loginPass" type="password" onkeydown="if(event.key==='Enter')login()">
+  <button style="width:100%" onclick="login()">Iniciar sessão</button>
+  <p id="loginError" style="color:var(--danger);font-size:13px;text-align:center"></p>
+
+  <div id="installAppBox" class="notice" style="text-align:center;margin-top:14px">
+    <b>📲 Baixar / Instalar Aplicativo (Telemóvel e PC)</b><br>
+    <span class="muted">Instala o NAELI PRICE no teu dispositivo para abrir como aplicativo próprio.</span><br>
+    <button class="secondary small" style="margin-top:8px" onclick="triggerInstallPWA()">⬇️ Instalar Aplicativo</button>
+  </div>
+
+  <div style="text-align:center;margin-top:14px;border-top:1px solid var(--border);padding-top:12px">
+    <button class="secondary small" onclick="showNewCompany()">+ Registar Nova Empresa</button>
+    <button class="secondary small" onclick="openSuperAdminLogin()">🔐 Painel da Administradora</button>
+  </div>
+</div>
+
+<!-- PAINEL DA ADMINISTRADORA -->
+<div id="superAdmin" class="login hidden" style="max-width:850px">
+  <div class="brand">PAINEL EXCLUSIVO DA ADMINISTRADORA · NUVEM ATIVA</div>
+  <h1>Gestão de Clientes, Preços e Vouchers</h1>
+  <p class="muted">Todas as alterações feitas aqui são guardadas na nuvem e sincronizadas automaticamente em todos os dispositivos.</p>
+
+  <div class="panel" style="background:var(--light);margin-top:10px">
+    <h3>⚙️ Configurações de Pagamento (IBAN / Express)</h3>
+    <div class="row">
+      <div><label>Banco (ex: BAI / BFA)</label><input id="cfgBank" placeholder="BAI / BFA"></div>
+      <div><label>IBAN da Conta</label><input id="cfgIban" placeholder="AO06 ..."></div>
+    </div>
+    <div class="row">
+      <div><label>Titular da Conta</label><input id="cfgHolder" placeholder="NAELI PRICE LDA"></div>
+      <div><label>Nº Multicaixa Express (MCX)</label><input id="cfgExpress" placeholder="923 000 000"></div>
+    </div>
+    <div class="row">
+      <div><label>Preço Mensal (Kz)</label><input id="cfgPrice" type="number" placeholder="15000"></div>
+      <div><label>WhatsApp (com indicativo)</label><input id="cfgWhatsapp" placeholder="+244923000000"></div>
+      <div><label>Dias de Teste (Trial)</label><input id="cfgTrialDays" type="number" value="14"></div>
+    </div>
+    <div class="row">
+      <div><label>Nova Senha Mestre da Administradora</label><input id="cfgAdminPass" type="password" placeholder="Deixar em branco para manter"></div>
+      <div style="display:flex;align-items:end"><button class="small" onclick="saveAdminSettings()">Guardar na Nuvem</button></div>
+    </div>
+  </div>
+
+  <div class="panel" style="background:var(--white);margin-top:10px">
+    <h3>🎟️ Gerar Voucher / Código de Recarga Instantânea</h3>
+    <div class="row">
+      <div><label>Descrição / Cliente</label><input id="invNote" placeholder="Ex: Recarga 30 dias - Pastelaria Doce"></div>
+      <div><label>Dias Oferecidos</label><input id="invDays" type="number" value="30"></div>
+    </div>
+    <button class="small" onclick="generateInviteCode()">Gerar Voucher</button>
+    <div id="invResult" style="margin-top:8px;font-weight:bold;color:var(--pink)"></div>
+    <div id="invList" style="margin-top:12px"></div>
+  </div>
+
+  <h3>📊 Empresas Registadas (Sincronizadas na Nuvem)</h3>
+  <div id="saList"></div>
+  <button class="secondary" style="width:100%;margin-top:10px" onclick="closeSuperAdmin()">Voltar ao Login</button>
+</div>
+
+<!-- ECRÃ DE RENOVAÇÃO (IBAN / EXPRESS + VOUCHER) -->
+<div id="expiredScreen" class="login hidden" style="max-width:600px">
+  <div class="brand">PERÍODO DE SUBSCRIÇÃO TERMINADO</div>
+  <h1>Renovação de Acesso</h1>
+  <p class="muted">Para continuar a utilizar o <b>NAELI PRICE</b>, efetue o pagamento por <b>IBAN</b> ou <b>Multicaixa Express</b> para adquirir a sua recarga, e insira o código abaixo.</p>
+
+  <div class="panel" style="background:var(--light)">
+    <h3>1️⃣ Dados para Pagamento (IBAN ou Multicaixa Express)</h3>
+    <p style="font-size:13px">Realize o pagamento usando os dados abaixo e envie o comprovativo para receber o seu <b>Código de Recarga (Voucher)</b>:</p>
+    <div id="paymentDetailsBox"></div>
+  </div>
+
+  <div class="panel" style="background:var(--white)">
+    <h3>2️⃣ Ativação por Código de Recarga (Voucher)</h3>
+    <p style="font-size:13px">Insira o código de voucher recebido após o pagamento para desbloquear a conta na hora:</p>
+    <div style="display:flex;gap:8px">
+      <input id="redeemCode" placeholder="Insira o código (ex: NAELI-XXXXXX)..." style="margin:0">
+      <button onclick="redeemInvite()">Ativar Agora</button>
+    </div>
+    <p id="redeemMsg" style="font-size:13px;color:var(--danger);margin-top:8px"></p>
+  </div>
+
+  <button class="secondary" style="width:100%;margin-top:10px" onclick="logout()">Terminar sessão</button>
+</div>
+
+<!-- APLICAÇÃO PRINCIPAL -->
+<div id="app" class="hidden">
+  <header>
+    <div>
+      <h1>NAELI PRICE <span id="compTitle" style="font-size:14px;font-weight:normal;color:var(--muted)"></span></h1>
+      <small>Precificação Inteligente · Valores em Kz</small>
+    </div>
+    <div class="actions">
+      <button class="secondary small" onclick="triggerInstallPWA()">⬇️ Instalar App</button>
+      <span id="netStatus" class="sync-indicator">☁️ Sincronizado</span>
+      <span id="trialBadge" class="status-bar"></span>
+      <span id="who" class="muted"></span>
+      <button class="secondary small" onclick="logout()">Sair</button>
+    </div>
+  </header>
+  <div class="layout">
+    <nav id="menu"></nav>
+    <main id="content"></main>
+  </div>
+</div>
+
+<script>
+// Configuração PWA (Manifest + Service Worker para instalação no telemóvel e no PC)
+const pwaManifest = {
+  name: "NAELI PRICE — Precificação Inteligente",
+  short_name: "NAELI PRICE",
+  description: "Precificação inteligente e gestão comercial para PMEs em Kz.",
+  start_url: "./",
+  scope: "./",
+  display: "standalone",
+  background_color: "#fff8fb",
+  theme_color: "#e94d91",
+  icons: [{
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%23e94d91'/%3E%3Ctext x='50%25' y='54%25' font-family='Arial, sans-serif' font-weight='bold' font-size='220' fill='white' text-anchor='middle' dominant-baseline='middle'%3ENP%3C/text%3E%3C/svg%3E",
+    sizes: "512x512",
+    type: "image/svg+xml",
+    purpose: "any maskable"
+  }]
+};
+const manifestBlob = new Blob([JSON.stringify(pwaManifest)], {type: 'application/json'});
+const manifestLink = document.createElement('link');
+manifestLink.rel = 'manifest';
+manifestLink.href = URL.createObjectURL(manifestBlob);
+document.head.appendChild(manifestLink);
+
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  const swCode = `
+    const CACHE_NAME = 'naeli-price-shell-v1';
+    self.addEventListener('install', event => {
+      self.skipWaiting();
+    });
+    self.addEventListener('activate', event => {
+      event.waitUntil(self.clients.claim());
+    });
+    self.addEventListener('fetch', event => {
+      if (event.request.method !== 'GET') return;
+      event.respondWith(
+        fetch(event.request).catch(() => caches.match(event.request))
+      );
+    });
+  `;
+  const swBlob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function triggerInstallPWA(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+  } else {
+    alert('Para instalar o NAELI PRICE:\n• No PC (Chrome/Edge): clique no ícone de instalar na barra de endereço ou no menu (⋮) → "Instalar aplicativo".\n• No Android (Chrome): toque em (⋮) → "Instalar aplicativo" ou "Adicionar ao ecrã principal".\n• No iPhone (Safari): toque em Partilhar → "Adicionar ao ecrã principal".');
+  }
+}
+
+// Configuração Firebase fornecida
+const firebaseConfig = {
+  apiKey: "AIzaSyCa76mX_CdKx2NGTUGJrNjn-qgpjQVQQJU",
+  authDomain: "naeli-price.firebaseapp.com",
+  databaseURL: "https://naeli-price-default-rtdb.firebaseio.com",
+  projectId: "naeli-price",
+  storageBucket: "naeli-price.firebasestorage.app",
+  messagingSenderId: "599082379591",
+  appId: "1:599082379591:web:d456fe9af736123d138462"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const dbRef = db.ref('naeli_price_cloud_v1');
+
+const LOCAL_SESSION_KEY = 'naeli_session_local';
+const LOCAL_CACHE_KEY = 'naeli_cloud_cache_v1';
+
+const DEFAULT_ROOT = {
+  companies: [],
+  invites: [],
+  adminPass: 'admin123',
+  settings: {
+    bank: 'BAI / BFA',
+    iban: 'AO06 0000 0000 0000 0000 0',
+    holder: 'NAELI PRICE LDA',
+    express: '923 000 000',
+    price: 15000,
+    whatsapp: '+244923000000',
+    trialDays: 14
+  }
+};
+
+let root = JSON.parse(localStorage.getItem(LOCAL_CACHE_KEY) || 'null') || JSON.parse(JSON.stringify(DEFAULT_ROOT));
+let session = JSON.parse(localStorage.getItem(LOCAL_SESSION_KEY) || 'null') || { companyId: null, userId: null };
+let company = null;
+let current = null;
+let page = 'inicio';
+let isInitialLoad = true;
+
+function hideLoadingAndStart(){
+  if(!isInitialLoad) return;
+  isInitialLoad = false;
+  document.getElementById('loadingScreen')?.classList.add('hidden');
+  restoreSession();
+}
+setTimeout(hideLoadingAndStart, 3500);
+
+function normalizeRoot(data){
+  let clean = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_ROOT)), data || {});
+  clean.companies = Array.isArray(clean.companies) ? clean.companies.filter(Boolean) : (clean.companies ? Object.values(clean.companies) : []);
+  clean.invites = Array.isArray(clean.invites) ? clean.invites.filter(Boolean) : (clean.invites ? Object.values(clean.invites) : []);
+  clean.settings = Object.assign({}, DEFAULT_ROOT.settings, clean.settings || {});
+
+  clean.companies.forEach(c => {
+    c.users = Array.isArray(c.users) ? c.users.filter(Boolean) : (c.users ? Object.values(c.users) : []);
+    c.data = Object.assign(freshCompanyData(), c.data || {});
+    ['ingredients','recipes','products','kits','clients','orders','stockMoves','salaries','expenses','sales','auditLogs'].forEach(k => {
+      c.data[k] = Array.isArray(c.data[k]) ? c.data[k].filter(Boolean) : (c.data[k] ? Object.values(c.data[k]) : []);
+    });
+    c.data.recipes.forEach(r => { r.lines = Array.isArray(r.lines) ? r.lines : []; });
+    c.data.kits.forEach(k => { k.items = Array.isArray(k.items) ? k.items : []; });
+  });
+  return clean;
+}
+
+db.ref('.info/connected').on('value', (snap) => {
+  let connected = snap.val() === true;
+  let el1 = document.getElementById('netStatus');
+  let el2 = document.getElementById('loginCloudStatus');
+  if(el1){
+    el1.textContent = connected ? '☁️ Nuvem Sincronizada' : '⚠️ Modo Offline';
+    el1.className = connected ? 'sync-indicator' : 'sync-indicator offline';
+  }
+  if(el2){
+    el2.textContent = connected ? '☁️ Nuvem Sincronizada' : '⚠️ Sem internet (Cache Local)';
+    el2.className = connected ? 'sync-indicator' : 'sync-indicator offline';
+  }
+});
+
+dbRef.on('value', (snapshot) => {
+  let val = snapshot.val();
+  if(!val && isInitialLoad){
+    let legacyLocal = JSON.parse(localStorage.getItem('naeli_price_saas_v11') || 'null');
+    if(legacyLocal && Array.isArray(legacyLocal.companies) && legacyLocal.companies.length > 0){
+      root = normalizeRoot(legacyLocal);
+    } else {
+      root = normalizeRoot(DEFAULT_ROOT);
+    }
+    dbRef.set(root).catch(() => {});
+  } else if(val) {
+    root = normalizeRoot(val);
+    localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(root));
+  }
+
+  if(isInitialLoad){
+    hideLoadingAndStart();
+  } else {
+    if(!document.getElementById('superAdmin').classList.contains('hidden')){
+      renderSuperAdmin();
+    }
+    if(company && session.companyId){
+      let updatedComp = root.companies.find(c => c.id === session.companyId);
+      if(updatedComp){
+        company = updatedComp;
+        current = company.users.find(u => u.id === session.userId) || current;
+        if(!current || !current.active){
+          alert('O teu acesso foi alterado ou bloqueado pela administração.');
+          logout();
+          return;
+        }
+        checkSubscriptionStatusSilently();
+        renderMenu();
+        render();
+      }
+    }
+  }
+}, (error) => {
+  console.error('Erro Firebase:', error);
+  hideLoadingAndStart();
+});
+
+function restoreSession(){
+  if(session && session.companyId && session.userId){
+    company = root.companies.find(c => c.id === session.companyId);
+    current = company?.users.find(u => u.id === session.userId);
+    if(company && current && current.active){
+      checkSubscriptionAndEnter();
+      return;
+    }
+  }
+  document.getElementById('login').classList.remove('hidden');
+}
+
+function saveSession(){
+  localStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(session));
+}
+
+function saveRoot(){
+  try {
+    localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(root));
+    dbRef.set(root).catch(err => console.error('Erro ao sincronizar na nuvem:', err));
+  } catch(e) {
+    alert('Erro ao gravar dados.');
+  }
+}
+
+const SECTIONS = [
+  ['inicio', '1. Painel principal'],
+  ['calculadora', '2. Calculadora'],
+  ['ingredientes', '3. Ingredientes'],
+  ['receitas', '4. Livro de receitas'],
+  ['produtos', '5. Produtos'],
+  ['kits', '6. Kits'],
+  ['clientes', '7. Clientes'],
+  ['encomendas', '8. Encomendas'],
+  ['calendario', '9. Calendário'],
+  ['alertas', '10. Alertas'],
+  ['stock', '11. Stock'],
+  ['funcionarios', '12. Funcionários'],
+  ['salarios', '13. Salários'],
+  ['despesas', '14. Despesas'],
+  ['vendas', '15. Vendas'],
+  ['relatorios', '16. Relatórios'],
+  ['configuracoes', '17. Configurações'],
+  ['backups', '18. Cópias de segurança']
+];
+
+const ROLES = {
+  proprietario: 'Proprietário(a)', gerente: 'Gerente', pasteleiro: 'Pasteleiro / Produção',
+  vendedor: 'Vendedor / Atendente', stock: 'Responsável pelo Stock', personalizado: 'Personalizado'
+};
+
+function money(v){ return (Number(v)||0).toLocaleString('pt-AO', {minimumFractionDigits:0, maximumFractionDigits:2}) + ' Kz'; }
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c)); }
+function todayISO(){ return new Date().toISOString().split('T')[0]; }
+
+async function hash(p, salt){
+  let enc = new TextEncoder();
+  let key = await crypto.subtle.importKey('raw', enc.encode(p), 'PBKDF2', false, ['deriveBits']);
+  let bits = await crypto.subtle.deriveBits({name:'PBKDF2', salt:enc.encode(salt), iterations:120000, hash:'SHA-256'}, key, 256);
+  return [...new Uint8Array(bits)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function salt(){ return crypto.getRandomValues(new Uint8Array(12)).join('-'); }
+
+function freshCompanyData(){
+  return {
+    ingredients: [], recipes: [], products: [], kits: [], clients: [],
+    orders: [], stockMoves: [], salaries: [], expenses: [], sales: [], auditLogs: [],
+    reserveConfig: { ingredientsPct: 35, expensesPct: 15, laborPct: 15, reservePct: 15, profitPct: 20 }
+  };
+}
+
+function logAction(action, detail){
+  if(!company || !current) return;
+  company.data.auditLogs.unshift({ date: new Date().toLocaleString('pt-AO'), user: current.name, action, detail });
+  if(company.data.auditLogs.length > 200) company.data.auditLogs.pop();
+}
+
+function showNewCompany(){
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById('setup').classList.remove('hidden');
+}
+
+async function setupCompany(){
+  let cName = compName.value.trim();
+  let oName = ownerName.value.trim();
+  let email = ownerEmail.value.trim().toLowerCase();
+  let p = ownerPass.value;
+  let code = setupInviteCode.value.trim().toUpperCase();
+
+  if(!cName || !oName || !email || p.length < 6 || p !== ownerConfirm.value){
+    return alert('Preencha todos os campos corretamente (palavra-passe mínimo 6 caracteres).');
+  }
+  if(root.companies.some(c => c.users.some(u => u.email === email))){
+    return alert('Este email já está registado no sistema.');
+  }
+
+  let trialDays = Number(root.settings.trialDays) || 14;
+  let status = 'trial';
+
+  if(code){
+    let inv = (root.invites||[]).find(x => x.code === code && !x.used);
+    if(!inv){ return alert('Código de voucher inválido ou já utilizado.'); }
+    inv.used = true;
+    inv.usedBy = cName;
+    trialDays = inv.days;
+    status = 'active';
+  }
+
+  let s = salt();
+  let trialEnd = Date.now() + (trialDays * 24 * 60 * 60 * 1000);
+  let newComp = {
+    id: 'emp_' + Date.now(), name: cName, createdAt: todayISO(), trialEndsAt: trialEnd, status: status, isExempt: false,
+    users: [{
+      id: 'usr_' + Date.now(), name: oName, email: email, role: 'proprietario', active: true,
+      salt: s, hash: await hash(p, s),
+      permissions: SECTIONS.map(x => x[0]),
+      actions: { view:true, create:true, edit:true, delete:true, export:true }
+    }],
+    data: freshCompanyData()
+  };
+  root.companies.push(newComp);
+  saveRoot();
+  alert(`Conta criada e sincronizada na nuvem! Acesso ativo por ${trialDays} dias.`);
+  document.getElementById('setup').classList.add('hidden');
+  document.getElementById('login').classList.remove('hidden');
+  loginUser.value = email;
+}
+
+async function login(){
+  let uInput = loginUser.value.trim().toLowerCase();
+  let p = loginPass.value;
+  let foundComp = null, foundUser = null;
+  for(let c of root.companies){
+    let u = c.users.find(x => x.email === uInput || x.name.toLowerCase() === uInput);
+    if(u){ foundComp = c; foundUser = u; break; }
+  }
+  if(!foundUser || await hash(p, foundUser.salt) !== foundUser.hash){
+    loginError.textContent = 'Credenciais inválidas.';
+    return;
+  }
+  if(!foundUser.active){
+    loginError.textContent = 'Esta conta foi bloqueada pela administração.';
+    return;
+  }
+  loginError.textContent = '';
+  company = foundComp;
+  current = foundUser;
+  session = { companyId: company.id, userId: current.id };
+  saveSession();
+  logAction('Login', 'Sessão iniciada');
+  saveRoot();
+  checkSubscriptionAndEnter();
+}
+
+function renderPaymentDetails(){
+  let st = root.settings;
+  let price = st.price || 15000;
+  let cleanWa = String(st.whatsapp||'').replace(/[^0-9]/g, '');
+  let waMsg = encodeURIComponent(`Olá! Efetuei o pagamento da subscrição da empresa *${company.name}* no valor de ${money(price)}. Segue o comprovativo para envio do meu Voucher de recarga.`);
+  let waLink = `https://wa.me/${cleanWa}?text=${waMsg}`;
+
+  document.getElementById('paymentDetailsBox').innerHTML = `
+    <div class="notice" style="background:white;border-left-color:var(--pink);margin-bottom:0">
+      • <b>Banco:</b> ${esc(st.bank)}<br>
+      • <b>IBAN:</b> ${esc(st.iban)}<br>
+      • <b>Multicaixa Express (MCX):</b> ${esc(st.express || 'Não definido')}<br>
+      • <b>Titular:</b> ${esc(st.holder)}<br>
+      • <b>Valor da Recarga (30 dias):</b> <b style="color:var(--pink)">${money(price)}</b><br><br>
+      <a href="${waLink}" target="_blank" style="text-decoration:none">
+        <button class="whatsapp" style="width:100%">📲 Enviar Comprovativo & Pedir Voucher no WhatsApp</button>
+      </a>
+    </div>
+  `;
+}
+
+function checkSubscriptionStatusSilently(){
+  if(!company) return;
+  if(!company.isExempt){
+    let now = Date.now();
+    if(company.status === 'trial' && now > company.trialEndsAt){
+      company.status = 'suspended';
+      saveRoot();
+    }
+    if(company.status === 'suspended'){
+      document.getElementById('app').classList.add('hidden');
+      renderPaymentDetails();
+      document.getElementById('expiredScreen').classList.remove('hidden');
+      return;
+    }
+  }
+  let now = Date.now();
+  let daysLeft = Math.max(0, Math.ceil((company.trialEndsAt - now)/(1000*60*60*24)));
+  let badge = document.getElementById('trialBadge');
+  if(badge){
+    badge.textContent = company.isExempt ? 'Uso Gratuito (Isento)' : (company.status === 'active' ? 'Subscrição Ativa' : `Trial: ${daysLeft}d restantes`);
+  }
+}
+
+function checkSubscriptionAndEnter(){
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById('setup').classList.add('hidden');
+
+  if(!company.isExempt){
+    let now = Date.now();
+    if(company.status === 'trial' && now > company.trialEndsAt){
+      company.status = 'suspended';
+      saveRoot();
+    }
+    if(company.status === 'suspended'){
+      renderPaymentDetails();
+      document.getElementById('expiredScreen').classList.remove('hidden');
+      return;
+    }
+  }
+
+  document.getElementById('expiredScreen').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('compTitle').textContent = '— ' + company.name;
+  document.getElementById('who').textContent = `${current.name} (${ROLES[current.role]||current.role})`;
+
+  checkSubscriptionStatusSilently();
+  renderMenu();
+  go('inicio');
+}
+
+function redeemInvite(){
+  let code = redeemCode.value.trim().toUpperCase();
+  let inv = (root.invites||[]).find(x => x.code === code && !x.used);
+  if(!inv){ redeemMsg.textContent = 'Código de voucher inválido ou já utilizado.'; return; }
+  inv.used = true;
+  inv.usedBy = company.name;
+  company.status = 'active';
+  company.trialEndsAt = Date.now() + (inv.days * 24 * 60 * 60 * 1000);
+  saveRoot();
+  redeemMsg.textContent = '';
+  redeemCode.value = '';
+  alert(`Recarga ativada com sucesso! Subscrição válida por ${inv.days} dias.`);
+  checkSubscriptionAndEnter();
+}
+
+function logout(){
+  if(company && current) {
+    logAction('Logout', 'Sessão terminada');
+    saveRoot();
+  }
+  session = { companyId: null, userId: null };
+  saveSession();
+  company = null; current = null;
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('expiredScreen').classList.add('hidden');
+  document.getElementById('login').classList.remove('hidden');
+  loginPass.value = '';
+}
+
+function openSuperAdminLogin(){
+  let pass = prompt('Insira a senha mestre da Administradora:');
+  if(!pass || pass !== (root.adminPass || 'admin123')) {
+    return alert('Acesso negado.');
+  }
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById('superAdmin').classList.remove('hidden');
+
+  let st = root.settings;
+  cfgBank.value = st.bank; cfgIban.value = st.iban; cfgHolder.value = st.holder;
+  cfgExpress.value = st.express || '';
+  cfgPrice.value = st.price; cfgWhatsapp.value = st.whatsapp; cfgTrialDays.value = st.trialDays;
+  cfgAdminPass.value = '';
+  renderSuperAdmin();
+}
+
+function closeSuperAdmin(){
+  document.getElementById('superAdmin').classList.add('hidden');
+  document.getElementById('login').classList.remove('hidden');
+}
+
+function saveAdminSettings(){
+  root.settings = {
+    bank: cfgBank.value.trim(),
+    iban: cfgIban.value.trim(),
+    holder: cfgHolder.value.trim(),
+    express: cfgExpress.value.trim(),
+    price: Number(cfgPrice.value) || 15000,
+    whatsapp: cfgWhatsapp.value.trim(),
+    trialDays: Number(cfgTrialDays.value) || 14
+  };
+  let newAPass = cfgAdminPass.value.trim();
+  if(newAPass){
+    root.adminPass = newAPass;
+    alert('Configurações e nova Senha Mestre guardadas e sincronizadas na nuvem!');
+  } else {
+    alert('Configurações guardadas e sincronizadas na nuvem!');
+  }
+  saveRoot();
+}
+
+function generateInviteCode(){
+  let note = invNote.value.trim() || 'Recarga Geral';
+  let days = Number(invDays.value) || 30;
+  let code = 'NAELI-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  root.invites = root.invites || [];
+  root.invites.unshift({ code, note, days, used: false, createdAt: todayISO() });
+  saveRoot();
+  invResult.innerHTML = `Voucher gerado: <b style="font-size:16px;user-select:all">${code}</b> (${days} dias) — Já disponível na nuvem!`;
+  renderSuperAdmin();
+}
+
+function renderSuperAdmin(){
+  let now = Date.now();
+  let totalActive = root.companies.filter(c => c.isExempt || c.status === 'active' || (c.status === 'trial' && now <= c.trialEndsAt)).length;
+  let estMRR = totalActive * (root.settings.price || 15000);
+
+  let summaryHtml = `
+    <div class="grid" style="margin-bottom:12px">
+      <div class="card">Empresas Registadas<div class="metric">${root.companies.length}</div></div>
+      <div class="card">Clientes Ativos/Isentos<div class="metric green">${totalActive}</div></div>
+      <div class="card">MRR Estimado (Mensal)<div class="metric">${money(estMRR)}</div></div>
+    </div>
+  `;
+
+  let invHtml = (root.invites||[]).slice(0, 10).map(inv => `
+    <div style="font-size:12.5px;padding:6px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+      <span><b style="user-select:all">${inv.code}</b> (${inv.days}d) — ${esc(inv.note)}</span>
+      <span>${inv.used ? `<span class="badge b-entr">Usado por: ${esc(inv.usedBy)}</span>` : `<span class="badge b-pron">Disponível</span>`}</span>
+    </div>
+  `).join('');
+  document.getElementById('invList').innerHTML = invHtml ? `<div style="margin-top:8px"><b>Últimos Vouchers Gerados:</b>${invHtml}</div>` : '';
+
+  let html = root.companies.map((c, idx) => {
+    let daysLeft = Math.max(0, Math.ceil((c.trialEndsAt - now)/(1000*60*60*24)));
+    let stBadge = c.isExempt ? '<span class="badge b-pron" style="background:#818cf8;color:white">Uso Gratuito (Isento)</span>' : (c.status === 'active' ? '<span class="badge b-pron">Ativa</span>' : (now > c.trialEndsAt ? '<span class="badge b-canc">Expirado</span>' : '<span class="badge b-pend">Em Trial</span>'));
+    let waChat = `https://wa.me/?text=${encodeURIComponent(`Olá ${c.users[0]?.name}, notamos que a subscrição da empresa ${c.name} no NAELI PRICE precisa de ser renovada.`)}`;
+    return `
+      <div class="card" style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+          <div>
+            <strong>${esc(c.name)}</strong> ${stBadge}<br>
+            <span class="muted">Email: ${c.users[0]?.email} · Faltam: <b>${c.isExempt ? 'Ilimitado' : daysLeft + ' dias'}</b></span>
+          </div>
+          <div class="actions">
+            <button class="small ${c.isExempt?'secondary':''}" onclick="toggleExempt(${idx})">${c.isExempt ? 'Remover Isenção' : '✨ Tornar Gratuito (Isento)'}</button>
+            <a href="${waChat}" target="_blank"><button class="whatsapp small">WhatsApp</button></a>
+            <button class="small" onclick="saExtend(${idx}, 30)">+30 Dias</button>
+            <button class="small danger" onclick="saToggleStatus(${idx}, 'suspended')">Suspender</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('') || '<p>Nenhuma empresa registada.</p>';
+
+  document.getElementById('saList').innerHTML = summaryHtml + html;
+}
+
+function toggleExempt(idx){
+  root.companies[idx].isExempt = !root.companies[idx].isExempt;
+  saveRoot();
+  renderSuperAdmin();
+  alert(`Estado de isenção da empresa ${root.companies[idx].name} atualizado na nuvem!`);
+}
+
+function saExtend(idx, days){
+  let c = root.companies[idx];
+  let base = Math.max(Date.now(), c.trialEndsAt);
+  c.trialEndsAt = base + (days * 24 * 60 * 60 * 1000);
+  c.status = 'active';
+  saveRoot();
+  renderSuperAdmin();
+  alert(`Adicionados ${days} dias à empresa ${c.name} na nuvem.`);
+}
+
+function saToggleStatus(idx, st){
+  root.companies[idx].status = st;
+  root.companies[idx].isExempt = false;
+  saveRoot();
+  renderSuperAdmin();
+}
+
+function canAccess(sec){ return current.role === 'proprietario' || current.permissions.includes(sec); }
+function canAct(act){ return current.role === 'proprietario' || (current.actions && current.actions[act]); }
+
+function getAlertsList(){
+  if(!company) return [];
+  let alerts = [];
+  let today = todayISO();
+  company.data.orders.forEach(o => {
+    if(['Entregue','Cancelada'].includes(o.status)) return;
+    if(o.deliveryDate < today) alerts.push({type:'danger', msg:`Encomenda #${o.num} (${o.clientName}) está ATRASADA.`});
+    else if(o.deliveryDate === today) alerts.push({type:'warn', msg:`Encomenda #${o.num} (${o.clientName}) é para HOJE.`});
+  });
+  company.data.ingredients.forEach(i => {
+    if(Number(i.minStock) > 0 && Number(i.stockQty) <= Number(i.minStock)) alerts.push({type:'danger', msg:`Stock baixo: ${i.name} (${i.stockQty} ${i.baseUnit}).`});
+  });
+  return alerts;
+}
+
+function renderMenu(){
+  let alertsCount = getAlertsList().length;
+  menu.innerHTML = SECTIONS.filter(x => canAccess(x[0])).map(x => {
+    let badge = (x[0]==='alertas' && alertsCount>0) ? `<span class="pill-count" style="background:var(--danger);color:white;padding:2px 6px;border-radius:10px;font-size:11px">${alertsCount}</span>` : '';
+    return `<button class="${page===x[0]?'active':''}" onclick="go('${x[0]}')"><span>${x[1]}</span>${badge}</button>`;
+  }).join('');
+}
+
+function go(p){
+  if(!canAccess(p)) return alert('Sem permissão para aceder a este módulo.');
+  page = p; renderMenu(); render();
+}
+
+function panel(title, body){ content.innerHTML = `<h2>${title}</h2>${body}`; }
+function table(headers, rows){
+  return `<div class="tablewrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="muted">Sem registos encontrados.</td></tr>`}</tbody></table></div>`;
+}
+
+function normalizeUnit(qty, unit){
+  qty = Number(qty)||0;
+  if(unit === 'kg') return { qty: qty*1000, unit: 'g' };
+  if(unit === 'L' || unit === 'litros') return { qty: qty*1000, unit: 'ml' };
+  return { qty, unit };
+}
+
+function recalculateAllCascades(){
+  let d = company.data;
+  d.recipes.forEach(r => {
+    let ingTotal = 0;
+    r.lines.forEach(line => {
+      let ing = d.ingredients.find(i => i.id === line.ingId);
+      if(ing){ line.name = ing.name; line.unitCost = ing.price / ing.baseQty; line.cost = line.amount * line.unitCost; }
+      ingTotal += Number(line.cost)||0;
+    });
+    r.ingredientsCost = ingTotal; r.totalCost = ingTotal + (Number(r.extraCost)||0);
+    r.unitCost = r.totalCost / (Number(r.yield)||1); r.suggestedPrice = r.unitCost * (1 + (Number(r.margin)||0)/100);
+  });
+  d.products.forEach(p => {
+    if(p.recipeId){ let r = d.recipes.find(x => x.id === p.recipeId); if(r) p.cost = r.unitCost; }
+  });
+  d.kits.forEach(k => {
+    let itemsCost = 0;
+    k.items.forEach(it => {
+      if(it.type === 'recipe'){ let r = d.recipes.find(x => x.id === it.refId); if(r){ it.name = r.name; it.unitCost = r.unitCost; } }
+      else { let p = d.products.find(x => x.id === it.refId); if(p){ it.name = p.name; it.unitCost = p.cost; } }
+      it.total = it.unitCost * it.qty;
+      itemsCost += it.total;
+    });
+    k.totalCost = itemsCost + (Number(k.packaging)||0) + (Number(k.decoration)||0) + (Number(k.otherCost)||0);
+    k.suggestedPrice = k.totalCost * (1 + (Number(k.margin)||0)/100);
+  });
+}
+
+function render(){
+  if(page === 'inicio') renderDashboard();
+  else if(page === 'calculadora') renderCalculator();
+  else if(page === 'ingredientes') renderIngredients();
+  else if(page === 'receitas') renderRecipes();
+  else if(page === 'produtos') renderProducts();
+  else if(page === 'kits') renderKits();
+  else if(page === 'clientes') renderClients();
+  else if(page === 'encomendas') renderOrders();
+  else if(page === 'calendario') renderCalendar();
+  else if(page === 'alertas') renderAlerts();
+  else if(page === 'stock') renderStock();
+  else if(page === 'funcionarios') renderStaff();
+  else if(page === 'salarios') renderSalaries();
+  else if(page === 'despesas') renderExpenses();
+  else if(page === 'vendas') renderSales();
+  else if(page === 'relatorios') renderReports();
+  else if(page === 'configuracoes') renderSettings();
+  else if(page === 'backups') renderBackups();
+}
+
+function renderDashboard(){
+  let d = company.data;
+  let totalSales = d.sales.reduce((s,x)=>s+Number(x.total||0),0);
+  let totalExpenses = d.expenses.reduce((s,x)=>s+Number(x.value||0),0);
+  let prodCosts = d.sales.reduce((s,x)=>s+Number(x.cost||0),0);
+  let grossProfit = totalSales - prodCosts;
+  let netProfit = totalSales - totalExpenses;
+  let alerts = getAlertsList();
+  let upcoming = d.orders.filter(o => !['Entregue','Cancelada'].includes(o.status)).sort((a,b) => (a.deliveryDate+a.deliveryTime).localeCompare(b.deliveryDate+b.deliveryTime)).slice(0,5);
+
+  panel('Painel Principal (Resumo Executivo)', `
+    ${alerts.length ? `<div class="notice" style="border-left-color:var(--danger)"><strong>Atenção (${alerts.length} alertas):</strong> ${esc(alerts[0].msg)} <button class="small secondary" onclick="go('alertas')">Ver todos</button></div>` : ''}
+    <div class="grid">
+      <div class="card">Total de Vendas<div class="metric green">${money(totalSales)}</div></div>
+      <div class="card">Total de Despesas<div class="metric danger">${money(totalExpenses)}</div></div>
+      <div class="card">Custos Produção<div class="metric">${money(prodCosts)}</div></div>
+      <div class="card">Lucro Bruto<div class="metric">${money(grossProfit)}</div></div>
+      <div class="card">Lucro Líquido<div class="metric ${netProfit>=0?'green':'danger'}">${money(netProfit)}</div></div>
+    </div>
+    <div class="grid">
+      <div class="card">Receitas<div class="metric">${d.recipes.length}</div></div>
+      <div class="card">Ingredientes<div class="metric">${d.ingredients.length}</div></div>
+      <div class="card">Produtos<div class="metric">${d.products.length}</div></div>
+      <div class="card">Encomendas<div class="metric">${d.orders.length}</div></div>
+    </div>
+    <div class="panel">
+      <h3>Próximas Entregas</h3>
+      ${table(['#','Cliente','Pedido','Entrega','Restante','Estado'], upcoming.map(o=>`
+        <tr><td>#${o.num}</td><td>${esc(o.clientName)}</td><td>${esc(o.itemName)} (${o.qty||1})</td><td>${o.deliveryDate} ${o.deliveryTime||''}</td><td><b>${money(o.remaining)}</b></td><td><span class="badge b-conf">${o.status}</span></td></tr>`).join(''))}
+    </div>
+  `);
+}
+
+function renderCalculator(){
+  let d = company.data;
+  window.calcLines = window.calcLines || [];
+  let opts = d.ingredients.map(i => `<option value="${i.id}">${esc(i.name)} (${money(i.price)}/${i.baseQty}${i.baseUnit})</option>`).join('');
+  panel('Calculadora Inteligente', `
+    <div class="panel">
+      <h3>Ingredientes</h3>
+      <div class="row">
+        <div><label>Ingrediente</label><select id="cIng">${opts}</select></div>
+        <div><label>Qtd Utilizada</label><input id="cAmt" type="number" step="0.01"></div>
+      </div>
+      <button class="secondary" onclick="addCalcLine()">+ Adicionar</button>
+      <div style="margin-top:10px">${table(['Ingrediente','Custo Proporcional','Ação'], window.calcLines.map((l,i)=>`<tr><td>${esc(l.name)} (${l.amount}${l.unit})</td><td><b>${money(l.cost)}</b></td><td><button class="small danger" onclick="window.calcLines.splice(${i},1);renderCalculator()">Remover</button></td></tr>`).join(''))}</div>
+    </div>
+    <div class="panel">
+      <h3>Custos & Margem</h3>
+      <div class="row">
+        <div><label>Embalagem</label><input id="cPack" type="number" value="0" oninput="runCalc()"></div>
+        <div><label>Mão de Obra</label><input id="cLabor" type="number" value="0" oninput="runCalc()"></div>
+        <div><label>Gás/Energia</label><input id="cUtility" type="number" value="0" oninput="runCalc()"></div>
+        <div><label>Decoração</label><input id="cDecor" type="number" value="0" oninput="runCalc()"></div>
+      </div>
+      <div class="row">
+        <div><label>Rendimento</label><input id="cYield" type="number" value="1" oninput="runCalc()"></div>
+        <div><label>Margem (%)</label><input id="cMargin" type="number" value="50" oninput="runCalc()"></div>
+      </div>
+      <div id="calcSummary" class="notice"></div>
+      <button onclick="transferCalcToRecipe()">Guardar no Livro de Receitas</button>
+    </div>
+  `);
+  runCalc();
+}
+function addCalcLine(){
+  let ing = company.data.ingredients.find(x=>x.id===cIng.value);
+  let amt = Number(cAmt.value);
+  if(!ing || amt<=0) return alert('Selecione o ingrediente e a quantidade.');
+  window.calcLines.push({ ingId:ing.id, name:ing.name, amount:amt, unit:ing.baseUnit, cost:amt*(ing.price/ing.baseQty) });
+  cAmt.value=''; renderCalculator();
+}
+function runCalc(){
+  let ingTot = (window.calcLines||[]).reduce((s,x)=>s+x.cost,0);
+  let extra = (Number(cPack?.value)||0) + (Number(cLabor?.value)||0) + (Number(cUtility?.value)||0) + (Number(cDecor?.value)||0);
+  let tot = ingTot + extra, yld = Math.max(1, Number(cYield?.value)||1), margin = Number(cMargin?.value)||0;
+  let unitCost = tot/yld, recPrice = unitCost*(1+margin/100);
+  if(document.getElementById('calcSummary')) calcSummary.innerHTML = `Custo Total: <b>${money(tot)}</b> · Custo Unitário: <b>${money(unitCost)}</b> · Preço Sugerido: <b style="color:var(--pink)">${money(recPrice)}</b>`;
+}
+function transferCalcToRecipe(){
+  if(!window.calcLines?.length) return alert('Adicione ingredientes.');
+  window.pendingRecipe = { lines:[...window.calcLines], extraCost:(Number(cPack.value)||0)+(Number(cLabor.value)||0)+(Number(cUtility.value)||0)+(Number(cDecor.value)||0), yield:Math.max(1,Number(cYield.value)||1), margin:Number(cMargin.value)||50 };
+  go('receitas');
+}
+
+function renderIngredients(){
+  let d = company.data;
+  panel('Gestão de Ingredientes e Matérias-Primas', `
+    <div class="panel">
+      <h3>Cadastrar / Atualizar Ingrediente</h3>
+      <input type="hidden" id="ingEditId">
+      <div class="row">
+        <div><label>Nome</label><input id="iName" placeholder="Ex.: Farinha"></div>
+        <div><label>Categoria</label><select id="iCat"><option>Secos e Farinhas</option><option>Laticínios</option><option>Ovos</option><option>Chocolates</option><option>Frutas</option><option>Embalagens</option><option>Outros</option></select></div>
+        <div><label>Qtd Comprada</label><input id="iQty" type="number" step="0.01" placeholder="1000"></div>
+        <div><label>Unidade</label><select id="iUnit"><option value="g">g</option><option value="kg">kg</option><option value="ml">ml</option><option value="L">L</option><option value="unidade">unidade</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Preço Compra (Kz)</label><input id="iPrice" type="number" step="0.01"></div>
+        <div><label>Fornecedor</label><input id="iSupplier"></div>
+        <div><label>Stock Atual</label><input id="iStock" type="number" value="0"></div>
+        <div><label>Stock Mínimo</label><input id="iMin" type="number" value="100"></div>
+      </div>
+      <button onclick="saveIngredient()">Guardar</button>
+    </div>
+    ${table(['Ingrediente','Categoria','Compra','Custo Unit.','Stock','Ações'], d.ingredients.map(i=>`
+      <tr>
+        <td><b>${esc(i.name)}</b></td><td>${esc(i.category)}</td><td>${money(i.price)} / ${i.baseQty}${i.baseUnit}</td>
+        <td><b>${money(i.price/i.baseQty)}</b> / ${i.baseUnit}</td><td>${i.stockQty} ${i.baseUnit}</td>
+        <td class="actions"><button class="small secondary" onclick="editIngredient('${i.id}')">Editar</button> <button class="small danger" onclick="delIngredient('${i.id}')">Eliminar</button></td>
+      </tr>`).join(''))}
+  `);
+}
+function saveIngredient(){
+  let id = ingEditId.value, name = iName.value.trim(), category = iCat.value;
+  let rawQty = Number(iQty.value), rawUnit = iUnit.value, price = Number(iPrice.value), supplier = iSupplier.value.trim();
+  let stockQty = Number(iStock.value)||0, minStock = Number(iMin.value)||0;
+  if(!name || rawQty<=0 || price<0) return alert('Preencha os campos corretamente.');
+  let norm = normalizeUnit(rawQty, rawUnit);
+  if(id){
+    let ing = company.data.ingredients.find(x=>x.id===id);
+    if(ing){ Object.assign(ing, {name, category, baseQty:norm.qty, baseUnit:norm.unit, price, supplier, stockQty, minStock}); recalculateAllCascades(); }
+  } else {
+    company.data.ingredients.push({ id:'ing_'+Date.now(), name, category, baseQty:norm.qty, baseUnit:norm.unit, price, supplier, stockQty, minStock });
+  }
+  saveRoot(); render();
+}
+function editIngredient(id){
+  let i = company.data.ingredients.find(x=>x.id===id);
+  if(!i) return;
+  ingEditId.value=i.id; iName.value=i.name; iCat.value=i.category; iQty.value=i.baseQty; iUnit.value=i.baseUnit; iPrice.value=i.price; iSupplier.value=i.supplier||''; iStock.value=i.stockQty; iMin.value=i.minStock;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function delIngredient(id){ company.data.ingredients = company.data.ingredients.filter(x=>x.id!==id); saveRoot(); render(); }
+
+function renderRecipes(){
+  let d = company.data;
+  window.recLines = window.pendingRecipe ? window.pendingRecipe.lines : (window.recLines || []);
+  let opts = d.ingredients.map(i => `<option value="${i.id}">${esc(i.name)} (${money(i.price/i.baseQty)}/${i.baseUnit})</option>`).join('');
+  panel('Livro Digital de Receitas', `
+    <div class="panel">
+      <h3>Nova Receita</h3>
+      <input type="hidden" id="recEditId">
+      <div class="row">
+        <div><label>Nome</label><input id="rName"></div>
+        <div><label>Categoria</label><select id="rCat"><option>Bolos</option><option>Tortas</option><option>Salgados</option><option>Outros</option></select></div>
+        <div><label>Tempo</label><input id="rTime" placeholder="45 min"></div>
+        <div><label>Foto</label><input id="rPhoto" type="file" accept="image/*"></div>
+      </div>
+      <div class="row">
+        <div><label>Ingrediente</label><select id="rIng">${opts}</select></div>
+        <div><label>Qtd</label><input id="rAmt" type="number" step="0.01"></div>
+        <div style="display:flex;align-items:end"><button class="secondary" style="width:100%" onclick="addRecLine()">+ Incluir</button></div>
+      </div>
+      <div id="rLinesBox" class="notice">${window.recLines.map((l,i)=>`${esc(l.name)} (${l.amount}${l.unit}) <a href="#" onclick="window.recLines.splice(${i},1);renderRecipes();return false">[x]</a>`).join(' · ') || 'Nenhum ingrediente.'}</div>
+      <div class="row">
+        <div><label>Custos Extras</label><input id="rExtra" type="number" value="${window.pendingRecipe?window.pendingRecipe.extraCost:0}"></div>
+        <div><label>Rendimento</label><input id="rYield" type="number" value="${window.pendingRecipe?window.pendingRecipe.yield:1}"></div>
+        <div><label>Margem (%)</label><input id="rMargin" type="number" value="${window.pendingRecipe?window.pendingRecipe.margin:50}"></div>
+      </div>
+      <label>Preparação</label><textarea id="rPrep" rows="2"></textarea>
+      <button onclick="saveRecipe()">Guardar Receita</button>
+    </div>
+    <div id="recipesList"></div>
+  `);
+  window.pendingRecipe = null;
+  recipesList.innerHTML = d.recipes.map(r=>`<div class="card"><h3>${esc(r.name)}</h3><p>Custo Unitário: <b>${money(r.unitCost)}</b> · Preço Venda: <b style="color:var(--pink)">${money(r.suggestedPrice)}</b></p><button class="small danger" onclick="company.data.recipes=company.data.recipes.filter(x=>x.id!='${r.id}');saveRoot();render()">Eliminar</button></div>`).join('');
+}
+function addRecLine(){
+  let ing = company.data.ingredients.find(x=>x.id===rIng.value);
+  let amt = Number(rAmt.value);
+  if(!ing || amt<=0) return alert('Selecione o ingrediente.');
+  window.recLines.push({ ingId:ing.id, name:ing.name, amount:amt, unit:ing.baseUnit, cost:amt*(ing.price/ing.baseQty) });
+  rAmt.value=''; renderRecipes();
+}
+async function saveRecipe(){
+  let name = rName.value.trim();
+  if(!name || !window.recLines.length) return alert('Preencha o nome e os ingredientes.');
+  let ingCost = window.recLines.reduce((s,x)=>s+x.cost,0), extra = Number(rExtra.value)||0, yld = Math.max(1, Number(rYield.value)||1), margin = Number(rMargin.value)||0;
+  let totalCost = ingCost + extra, unitCost = totalCost/yld;
+  company.data.recipes.push({ id:'rec_'+Date.now(), name, category:rCat.value, lines:[...window.recLines], extraCost:extra, yield:yld, margin, totalCost, unitCost, suggestedPrice:unitCost*(1+margin/100), prep:rPrep.value, updatedAt:todayISO() });
+  window.recLines = []; saveRoot(); render();
+}
+
+function renderProducts(){
+  let d = company.data;
+  panel('Gestão de Produtos', `
+    <div class="panel">
+      <h3>Novo Produto</h3>
+      <div class="row">
+        <div><label>Nome</label><input id="pName"></div>
+        <div><label>Custo</label><input id="pCost" type="number"></div>
+        <div><label>Preço Venda</label><input id="pPrice" type="number"></div>
+        <div><label>Stock</label><input id="pStock" type="number" value="0"></div>
+      </div>
+      <button onclick="company.data.products.push({id:'p_'+Date.now(), name:pName.value, cost:Number(pCost.value)||0, price:Number(pPrice.value)||0, stock:Number(pStock.value)||0});saveRoot();render()">Guardar</button>
+    </div>
+    ${table(['Produto','Custo','Preço','Stock','Ação'], d.products.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${money(p.cost)}</td><td><b>${money(p.price)}</b></td><td>${p.stock}</td><td><button class="small danger" onclick="company.data.products=company.data.products.filter(x=>x.id!='${p.id}');saveRoot();render()">Eliminar</button></td></tr>`).join(''))}
+  `);
+}
+
+function renderKits(){
+  let d = company.data;
+  window.kitItems = window.kitItems || [];
+  let opts = [...d.recipes.map(r=>`<option value="recipe:${r.id}">[Receita] ${esc(r.name)} (${money(r.unitCost)})</option>`), ...d.products.map(p=>`<option value="product:${p.id}">[Produto] ${esc(p.name)} (${money(p.cost)})</option>`)].join('');
+  panel('Gestão de Kits Personalizados', `
+    <div class="panel">
+      <h3>Montar Kit</h3>
+      <div class="row">
+        <div><label>Nome do Kit</label><input id="kName" placeholder="Ex: Kit Festa de Aniversário"></div>
+        <div><label>Item</label><select id="kItem">${opts}</select></div>
+        <div><label>Quantidade</label><input id="kQty" type="number" value="1" min="1"></div>
+        <div style="display:flex;align-items:end"><button class="secondary" style="width:100%" onclick="addKitItem()">+ Adicionar Item</button></div>
+      </div>
+      <div class="notice">${window.kitItems.map((it,i)=>`${it.qty}x ${esc(it.name)} (${money(it.total)}) <a href="#" onclick="window.kitItems.splice(${i},1);renderKits();return false">[x]</a>`).join(' · ') || 'Nenhum item adicionado ao kit.'}</div>
+      <div class="row">
+        <div><label>Embalagem (Kz)</label><input id="kPack" type="number" value="0"></div>
+        <div><label>Decoração (Kz)</label><input id="kDecor" type="number" value="0"></div>
+        <div><label>Margem (%)</label><input id="kMargin" type="number" value="40"></div>
+      </div>
+      <button onclick="saveKit()">Guardar Kit</button>
+    </div>
+    ${d.kits.map(k=>`
+      <div class="card">
+        <h3>${esc(k.name)}</h3>
+        <p>Itens: ${k.items.map(i=>`${i.qty}x ${esc(i.name)}`).join(', ')}</p>
+        <p>Custo Total: <b>${money(k.totalCost)}</b> · Preço Sugerido: <b style="color:var(--pink)">${money(k.suggestedPrice)}</b></p>
+        <button class="small danger" onclick="company.data.kits=company.data.kits.filter(x=>x.id!='${k.id}');saveRoot();render()">Eliminar Kit</button>
+      </div>
+    `).join('')}
+  `);
+}
+function addKitItem(){
+  if(!kItem.value) return alert('Selecione um item.');
+  let [type, id] = kItem.value.split(':');
+  let qty = Number(kQty.value)||1;
+  let name='', unitCost=0;
+  if(type==='recipe'){ let r=company.data.recipes.find(x=>x.id===id); if(r){ name=r.name; unitCost=r.unitCost; } }
+  else { let p=company.data.products.find(x=>x.id===id); if(p){ name=p.name; unitCost=p.cost; } }
+  window.kitItems.push({type, id, name, qty, unitCost, total:unitCost*qty});
+  renderKits();
+}
+function saveKit(){
+  let name = kName.value.trim();
+  if(!name || !window.kitItems.length) return alert('Indique o nome e adicione itens.');
+  let itemsCost = window.kitItems.reduce((s,x)=>s+x.total,0);
+  let pack = Number(kPack.value)||0, decor = Number(kDecor.value)||0, margin = Number(kMargin.value)||0;
+  let totalCost = itemsCost + pack + decor;
+  company.data.kits.push({ id:'kit_'+Date.now(), name, items:[...window.kitItems], packaging:pack, decoration:decor, margin, totalCost, suggestedPrice:totalCost*(1+margin/100) });
+  window.kitItems=[]; saveRoot(); render();
+}
+
+function renderClients(){
+  let d = company.data;
+  panel('Gestão de Clientes', `
+    <div class="panel">
+      <h3>Registar Cliente</h3>
+      <div class="row">
+        <div><label>Nome completo</label><input id="clName"></div>
+        <div><label>Telefone</label><input id="clPhone"></div>
+        <div><label>Endereço</label><input id="clAddr"></div>
+      </div>
+      <label>Observações</label><input id="clNote">
+      <button onclick="saveClient()">Guardar Cliente</button>
+    </div>
+    ${table(['Cliente','Telefone','Endereço','Encomendas','Total Comprado','Observações'], d.clients.map(c=>{
+      let cOrders = d.orders.filter(o=>o.clientId===c.id || o.clientName.toLowerCase()===c.name.toLowerCase());
+      let totalSpent = cOrders.reduce((s,o)=>s+Number(o.total||0),0);
+      return `<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.phone)}</td><td>${esc(c.address)}</td><td>${cOrders.length}</td><td><b>${money(totalSpent)}</b></td><td>${esc(c.note)}</td></tr>`;
+    }).join(''))}
+  `);
+}
+function saveClient(){
+  if(!clName.value.trim()) return alert('Indique o nome do cliente.');
+  company.data.clients.push({ id:'cli_'+Date.now(), name:clName.value.trim(), phone:clPhone.value, address:clAddr.value, note:clNote.value });
+  saveRoot(); render();
+}
+
+function renderOrders(){
+  let d = company.data;
+  let cliOpts = `<option value="">-- Cliente --</option>` + d.clients.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  panel('Gestão de Encomendas', `
+    <div class="panel">
+      <h3>Nova Encomenda</h3>
+      <div class="row">
+        <div><label>Cliente</label><select id="oCli" onchange="if(this.value)oCliName.value=this.options[this.selectedIndex].text">${cliOpts}</select></div>
+        <div><label>Nome</label><input id="oCliName"></div>
+        <div><label>Pedido</label><input id="oItem"></div>
+        <div><label>Total (Kz)</label><input id="oTot" type="number"></div>
+      </div>
+      <div class="row">
+        <div><label>Sinal (Kz)</label><input id="oDep" type="number" value="0"></div>
+        <div><label>Data Entrega</label><input id="oDate" type="date" value="${todayISO()}"></div>
+        <div><label>Hora</label><input id="oTime" type="time" value="14:00"></div>
+        <div><label>Local</label><input id="oLocal"></div>
+      </div>
+      <button onclick="saveOrder()">Registar Encomenda</button>
+    </div>
+    ${table(['#','Cliente','Pedido','Entrega','Total / Sinal','Estado','Ação'], d.orders.map(o=>`
+      <tr>
+        <td><b>#${o.num}</b></td><td>${esc(o.clientName)}</td><td>${esc(o.itemName)}</td><td>${o.deliveryDate}</td>
+        <td>Total: <b>${money(o.total)}</b><br>Sinal: ${money(o.deposit)}</td>
+        <td><span class="badge b-conf">${o.status}</span></td>
+        <td><select onchange="updateOrderStatus('${o.id}', this.value)" style="padding:4px">${['Pendente','Confirmada','Em preparação','Pronta','Entregue','Cancelada'].map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select></td>
+      </tr>`).join(''))}
+  `);
+}
+function saveOrder(){
+  if(!oCliName.value.trim() || !oItem.value.trim()) return alert('Preencha o cliente e o pedido.');
+  let total = Number(oTot.value)||0, deposit = Number(oDep.value)||0;
+  company.data.orders.unshift({ id:'ord_'+Date.now(), num:1000+company.data.orders.length+1, clientName:oCliName.value.trim(), itemName:oItem.value.trim(), total, deposit, remaining:Math.max(0, total-deposit), deliveryDate:oDate.value, deliveryTime:oTime.value, local:oLocal.value, status:'Pendente' });
+  saveRoot(); render();
+}
+function updateOrderStatus(id, st){
+  let o = company.data.orders.find(x=>x.id===id);
+  if(o){ o.status = st; saveRoot(); render(); }
+}
+
+function renderCalendar(){
+  let selDate = window.calDate || todayISO();
+  let dayOrders = company.data.orders.filter(o => o.deliveryDate === selDate && o.status !== 'Cancelada');
+  panel('Calendário de Entregas', `
+    <div class="panel">
+      <div class="row">
+        <div><label>Selecionar Data</label><input type="date" value="${selDate}" onchange="window.calDate=this.value;renderCalendar()"></div>
+        <div style="display:flex;align-items:end"><button class="secondary" onclick="window.calDate='${todayISO()}';renderCalendar()">Hoje</button></div>
+      </div>
+    </div>
+    <h3>Entregas Agendadas para ${selDate} (${dayOrders.length})</h3>
+    ${table(['Hora','Encomenda','Cliente','Pedido','Local','A Receber','Estado'], dayOrders.map(o=>`<tr><td><b>${o.deliveryTime||'--:--'}</b></td><td>#${o.num}</td><td>${esc(o.clientName)}</td><td>${esc(o.itemName)}</td><td>${esc(o.local||'-')}</td><td><b>${money(o.remaining)}</b></td><td>${o.status}</td></tr>`).join(''))}
+  `);
+}
+
+function renderAlerts(){
+  let alerts = getAlertsList();
+  panel('Central de Alertas e Notificações', `
+    <p class="muted">Alertas automáticos de prazos de entrega e rutura de stock.</p>
+    ${alerts.map(a => `<div class="notice" style="border-left-color:${a.type==='danger'?'var(--danger)':'var(--warn)'}">${esc(a.msg)}</div>`).join('') || '<div class="notice" style="border-left-color:var(--success)">Tudo em ordem! Nenhum alerta pendente.</div>'}
+  `);
+}
+
+function renderStock(){
+  let d = company.data;
+  let opts = d.ingredients.map(i=>`<option value="${i.id}">${esc(i.name)} (Stock atual: ${i.stockQty} ${i.baseUnit})</option>`).join('');
+  panel('Gestão e Movimento de Stock', `
+    <div class="panel">
+      <h3>Registar Entrada ou Saída</h3>
+      <div class="row">
+        <div><label>Ingrediente / Matéria-prima</label><select id="stIng">${opts}</select></div>
+        <div><label>Tipo de Movimento</label><select id="stType"><option value="in">Entrada (+)</option><option value="out">Saída (-)</option></select></div>
+        <div><label>Quantidade</label><input id="stQty" type="number" step="0.01"></div>
+        <div><label>Motivo / Observação</label><input id="stNote" placeholder="Ex: Compra semanal / Quebra"></div>
+      </div>
+      <button onclick="saveStockMove()">Registar Movimento</button>
+    </div>
+    ${table(['Data','Item','Tipo','Qtd','Observação'], d.stockMoves.map(m=>`<tr><td>${m.date}</td><td><b>${esc(m.name)}</b></td><td><span class="badge ${m.type==='in'?'b-pron':'b-canc'}">${m.type==='in'?'Entrada':'Saída'}</span></td><td>${m.qty} ${m.unit}</td><td>${esc(m.note)}</td></tr>`).join(''))}
+  `);
+}
+function saveStockMove(){
+  let ing = company.data.ingredients.find(x=>x.id===stIng.value);
+  let qty = Number(stQty.value);
+  if(!ing || qty<=0) return alert('Selecione o ingrediente e a quantidade.');
+  if(stType.value === 'in') ing.stockQty = (Number(ing.stockQty)||0) + qty;
+  else ing.stockQty = Math.max(0, (Number(ing.stockQty)||0) - qty);
+  company.data.stockMoves.unshift({ date:todayISO(), name:ing.name, unit:ing.baseUnit, type:stType.value, qty, note:stNote.value });
+  saveRoot(); render();
+}
+
+function renderStaff(){
+  if(current.role !== 'proprietario' && current.role !== 'gerente') return panel('Funcionários', '<p class="muted">Acesso restrito à gerência e proprietário.</p>');
+  let staffUsers = company.users.filter(u => u.role !== 'proprietario');
+
+  let checkboxesHtml = SECTIONS.map(s => `
+    <label style="display:inline-flex;align-items:center;margin-right:15px;margin-bottom:6px;font-weight:normal;font-size:12.5px;min-width:180px">
+      <input type="checkbox" class="staff-perm" value="${s[0]}" checked style="width:auto;margin-right:6px"> ${s[1]}
+    </label>
+  `).join('');
+
+  panel('Gestão de Funcionários e Permissões Personalizadas', `
+    <div class="panel">
+      <h3>Criar Acesso Individual com Permissões por Módulo</h3>
+      <div class="row">
+        <div><label>Nome do Funcionário</label><input id="usrName" placeholder="Ex: Paula Silva"></div>
+        <div><label>Email de Acesso</label><input id="usrEmail" type="email" placeholder="paula@pastelaria.ao"></div>
+        <div><label>Cargo / Função</label><select id="usrRole" onchange="applyDefaultRolePerms(this.value)"><option value="gerente">Gerente</option><option value="pasteleiro">Pasteleiro / Produção</option><option value="vendedor">Vendedor / Atendente</option><option value="stock">Responsável pelo Stock</option><option value="personalizado">Personalizado</option></select></div>
+        <div><label>Palavra-passe (mín. 6 caracteres)</label><input id="usrPass" type="password"></div>
+      </div>
+      <label style="margin-top:12px;margin-bottom:6px"><b>Módulos Permitidos:</b></label>
+      <div style="background:var(--light);padding:14px;border-radius:8px;max-height:220px;overflow-y:auto;margin-bottom:14px;display:flex;flex-wrap:wrap;gap:4px">
+        ${checkboxesHtml}
+      </div>
+      <button onclick="createStaffUser()">Criar Conta de Funcionário</button>
+    </div>
+    <h3>Colaboradores e Acessos Ativos</h3>
+    ${table(['Nome','Email','Função','Módulos Permitidos','Estado','Ação'], staffUsers.map(u => `
+      <tr>
+        <td><b>${esc(u.name)}</b></td>
+        <td>${esc(u.email)}</td>
+        <td><span class="badge b-conf">${ROLES[u.role]||u.role}</span></td>
+        <td><small>${(u.permissions||[]).length} de ${SECTIONS.length} módulos</small></td>
+        <td>${u.active ? '<span class="badge b-pron">Ativo</span>' : '<span class="badge b-canc">Bloqueado</span>'}</td>
+        <td class="actions">
+          <button class="small secondary" onclick="toggleUserStatus('${u.id}')">${u.active ? 'Bloquear' : 'Ativar'}</button>
+          <button class="small danger" onclick="deleteUser('${u.id}')">Eliminar</button>
+        </td>
+      </tr>
+    `).join(''))}
+  `);
+}
+
+function applyDefaultRolePerms(role){
+  let boxes = document.querySelectorAll('.staff-perm');
+  let defaults = SECTIONS.map(x => x[0]);
+  if(role === 'vendedor') defaults = ['inicio','clientes','encomendas','calendario','vendas'];
+  else if(role === 'pasteleiro') defaults = ['inicio','ingredientes','receitas','stock','alertas'];
+  else if(role === 'stock') defaults = ['inicio','ingredientes','stock','alertas'];
+
+  boxes.forEach(b => { b.checked = defaults.includes(b.value); });
+}
+
+async function createStaffUser(){
+  let name = usrName.value.trim();
+  let email = usrEmail.value.trim().toLowerCase();
+  let role = usrRole.value;
+  let p = usrPass.value;
+  if(!name || !email || p.length < 6) return alert('Preencha o nome, email e palavra-passe (mínimo 6 caracteres).');
+  if(company.users.some(u => u.email === email)) return alert('Este email já está a ser utilizado por outro colaborador.');
+
+  let selectedPerms = [];
+  document.querySelectorAll('.staff-perm').forEach(b => { if(b.checked) selectedPerms.push(b.value); });
+
+  let s = salt();
+  let hashPass = await hash(p, s);
+
+  company.users.push({
+    id: 'usr_' + Date.now(), name, email, role, active: true,
+    salt: s, hash: hashPass, permissions: selectedPerms, actions: { view:true, create:true, edit:true, delete:false, export:false }
+  });
+  saveRoot();
+  alert(`Acesso criado com sucesso para ${name}!`);
+  renderStaff();
+}
+
+function toggleUserStatus(uid){
+  let u = company.users.find(x => x.id === uid);
+  if(u){ u.active = !u.active; saveRoot(); renderStaff(); }
+}
+
+function deleteUser(uid){
+  if(confirm('Tem a certeza que quer eliminar este acesso?')){
+    company.users = company.users.filter(x => x.id !== uid);
+    saveRoot(); renderStaff();
+  }
+}
+
+function renderSalaries(){
+  let d = company.data;
+  let staffList = company.users.filter(u => u.role !== 'proprietario');
+  let staffOpts = staffList.map(s => `<option value="${esc(s.name)}|${ROLES[s.role]||s.role}">${esc(s.name)} (${ROLES[s.role]||s.role})</option>`).join('');
+  panel('Pagamento de Salários', `
+    <div class="panel">
+      <h3>Registar Pagamento</h3>
+      <div class="row">
+        <div><label>Funcionário</label><select id="salSel" onchange="let v=this.value.split('|');if(v.length===2){salName.value=v[0];salRole.value=v[1];}"><option value="">-- Selecionar Funcionário --</option>${staffOpts}</select></div>
+        <div><label>Nome</label><input id="salName"></div>
+        <div><label>Cargo</label><input id="salRole"></div>
+        <div><label>Salário Base (Kz)</label><input id="salBase" type="number"></div>
+      </div>
+      <div class="row">
+        <div><label>Valor Pago (Kz)</label><input id="salPaid" type="number"></div>
+        <div style="display:flex;align-items:end"><button style="width:100%" onclick="saveSalaryRecord()">Registar Pagamento</button></div>
+      </div>
+    </div>
+    ${table(['Data','Funcionário','Cargo','Base','Pago','Pendente'], d.salaries.map(s=>`<tr><td>${s.date}</td><td><b>${esc(s.name)}</b></td><td>${esc(s.role)}</td><td>${money(s.base)}</td><td style="color:var(--success)">${money(s.paid)}</td><td style="color:var(--danger)">${money(Math.max(0, s.base - s.paid))}</td></tr>`).join(''))}
+  `);
+}
+function saveSalaryRecord(){
+  if(!salName.value.trim()) return alert('Indique o nome.');
+  let paid = Number(salPaid.value)||0, base = Number(salBase.value)||0;
+  company.data.salaries.unshift({ date:todayISO(), name:salName.value, role:salRole.value, base, paid });
+  if(paid > 0) company.data.expenses.unshift({ date:todayISO(), desc:`Salário: ${salName.value}`, category:'Salários', value:paid });
+  saveRoot(); render();
+}
+
+function renderExpenses(){
+  let d = company.data;
+  panel('Registo de Despesas', `
+    <div class="panel">
+      <h3>Nova Despesa</h3>
+      <div class="row">
+        <div><label>Descrição</label><input id="eDesc"></div>
+        <div><label>Categoria</label><select id="eCat"><option>Ingredientes</option><option>Embalagens</option><option>Salários</option><option>Gás e Energia</option><option>Água</option><option>Transporte</option><option>Outros</option></select></div>
+        <div><label>Valor (Kz)</label><input id="eVal" type="number"></div>
+        <div><label>Data</label><input id="eDate" type="date" value="${todayISO()}"></div>
+      </div>
+      <button onclick="saveExpense()">Registar Despesa</button>
+    </div>
+    ${table(['Data','Descrição','Categoria','Valor'], d.expenses.map(e=>`<tr><td>${e.date}</td><td>${esc(e.desc)}</td><td>${esc(e.category)}</td><td><b>${money(e.value)}</b></td></tr>`).join(''))}
+  `);
+}
+function saveExpense(){
+  if(!eDesc.value.trim() || Number(eVal.value)<=0) return alert('Preencha a descrição e o valor.');
+  company.data.expenses.unshift({ date:eDate.value, desc:eDesc.value.trim(), category:eCat.value, value:Number(eVal.value) });
+  saveRoot(); render();
+}
+
+function renderSales(){
+  let d = company.data;
+  panel('Registo de Vendas Diretas', `
+    <div class="panel">
+      <h3>Venda Balcão</h3>
+      <div class="row">
+        <div><label>Produto / Item</label><input id="sItem"></div>
+        <div><label>Quantidade</label><input id="sQty" type="number" value="1"></div>
+        <div><label>Total (Kz)</label><input id="sTot" type="number"></div>
+        <div><label>Custo de Produção (Kz)</label><input id="sCost" type="number" value="0"></div>
+      </div>
+      <button onclick="saveDirectSale()">Registar Venda</button>
+    </div>
+    ${table(['Data','Produto','Qtd','Total','Lucro Estimado'], d.sales.map(s=>`<tr><td>${s.date}</td><td><b>${esc(s.item)}</b></td><td>${s.qty}</td><td><b>${money(s.total)}</b></td><td style="color:var(--success)"><b>${money(s.total - (s.cost||0))}</b></td></tr>`).join(''))}
+  `);
+}
+function saveDirectSale(){
+  if(!sItem.value.trim() || Number(sTot.value)<=0) return alert('Preencha o item e o total.');
+  company.data.sales.unshift({ date:todayISO(), item:sItem.value.trim(), qty:Number(sQty.value)||1, total:Number(sTot.value), cost:Number(sCost.value)||0 });
+  saveRoot(); render();
+}
+
+function renderReports(){
+  let d = company.data;
+  let totSales = d.sales.reduce((s,x)=>s+Number(x.total||0),0);
+  let totExp = d.expenses.reduce((s,x)=>s+Number(x.value||0),0);
+  let totProdCost = d.sales.reduce((s,x)=>s+Number(x.cost||0),0);
+  let netProfit = totSales - totExp;
+  panel('Relatórios Financeiros e Desempenho', `
+    <div class="grid">
+      <div class="card">Faturação Total<div class="metric green">${money(totSales)}</div></div>
+      <div class="card">Custos de Produção<div class="metric">${money(totProdCost)}</div></div>
+      <div class="card">Despesas Operacionais<div class="metric danger">${money(totExp)}</div></div>
+      <div class="card">Lucro Líquido Real<div class="metric ${netProfit>=0?'green':'danger'}">${money(netProfit)}</div></div>
+    </div>
+    <div class="panel">
+      <h3>Resumo do Negócio</h3>
+      <p>• Total de encomendas registadas: <b>${d.orders.length}</b></p>
+      <p>• Total de clientes cadastrados: <b>${d.clients.length}</b></p>
+      <p>• Total de receitas no livro: <b>${d.recipes.length}</b></p>
+      <p>• Total de ingredientes em stock: <b>${d.ingredients.length}</b></p>
+    </div>
+  `);
+}
+
+function renderSettings(){
+  panel('Configurações da Conta e Segurança', `
+    <div class="panel">
+      <h3>Alterar Palavra-passe de Acesso</h3>
+      <label>Palavra-passe Atual</label><input id="setCurPass" type="password">
+      <label>Nova Palavra-passe (mín. 6 caracteres)</label><input id="setNewPass" type="password">
+      <label>Confirmar Nova Palavra-passe</label><input id="setConfirmPass" type="password">
+      <button onclick="changeUserPassword()">Atualizar Palavra-passe</button>
+    </div>
+
+    <div class="panel" style="margin-top:15px">
+      <h3>☁️ Estado da Sincronização na Nuvem</h3>
+      <p class="muted">Os teus dados estão ligados em tempo real ao servidor na nuvem (Firebase). Qualquer alteração feita aqui fica automaticamente disponível noutros dispositivos.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="secondary" onclick="exportCompanyBackup()">Descarregar Cópia de Segurança (JSON)</button>
+      </div>
+    </div>
+  `);
+}
+
+async function changeUserPassword(){
+  let cur = setCurPass.value, nw = setNewPass.value, conf = setConfirmPass.value;
+  if(!cur || nw.length < 6 || nw !== conf){
+    return alert('Preencha corretamente. A nova palavra-passe precisa de ter no mínimo 6 caracteres e coincidir.');
+  }
+  let curHash = await hash(cur, current.salt);
+  if(curHash !== current.hash){
+    return alert('A palavra-passe atual está incorreta.');
+  }
+  current.salt = salt();
+  current.hash = await hash(nw, current.salt);
+  saveRoot();
+  alert('Palavra-passe alterada e sincronizada com sucesso!');
+  setCurPass.value = ''; setNewPass.value = ''; setConfirmPass.value = '';
+}
+
+function renderBackups(){
+  panel('Cópias de Segurança', `
+    <div class="panel">
+      <h3>Descarregar Cópia Local dos Dados</h3>
+      <p class="muted">Embora todos os dados já estejam protegidos automaticamente na nuvem, podes descarregar uma cópia em ficheiro JSON para arquivo pessoal.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button onclick="exportCompanyBackup()">Descarregar Ficheiro JSON</button>
+      </div>
+    </div>
+  `);
+}
+
+function exportCompanyBackup(){
+  let blob = new Blob([JSON.stringify(root, null, 2)], {type:'application/json'});
+  let a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `NAELI_CLOUD_BACKUP_${todayISO()}.json`; a.click();
+}
+</script>
+</body>
+</html>
